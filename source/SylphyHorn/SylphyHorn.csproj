@@ -95,8 +95,8 @@
       <HintPath>..\packages\MetroRadiance.Core.1.1.0.2\lib\net45\MetroRadiance.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MetroTrilithon, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\source\packages\MetroTrilithon.0.1.0.0\lib\portable-net45+win+wp80+MonoAndroid10+xamarinios10+MonoTouch10\MetroTrilithon.dll</HintPath>
+    <Reference Include="MetroTrilithon, Version=0.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroTrilithon.0.1.1.0\lib\portable-net45+dnxcore50+win+wp80+MonoAndroid10+xamarinios10+MonoTouch10\MetroTrilithon.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MetroTrilithon.Desktop, Version=0.1.4.0, Culture=neutral, processorArchitecture=MSIL">
@@ -145,6 +145,7 @@
     <Compile Include="Interop\UnsafeNativeMethods.cs" />
     <Compile Include="Models\Helper.cs" />
     <Compile Include="Models\NotificationService.cs" />
+    <Compile Include="Models\PinService.cs" />
     <Compile Include="Models\ShortcutKeyPressedEventArgs.cs" />
     <Compile Include="ViewModels\NotificationWindowViewModel.cs" />
     <Compile Include="ViewModels\SettingsWindowViewModel.cs" />

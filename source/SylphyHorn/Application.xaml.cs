@@ -13,6 +13,7 @@ using StatefulModel;
 using SylphyHorn.Models;
 using SylphyHorn.ViewModels;
 using SylphyHorn.Views;
+using VDMHelperCLR.Common;
 using MessageBox = System.Windows.MessageBox;
 
 namespace SylphyHorn
@@ -23,6 +24,7 @@ namespace SylphyHorn
 		private System.Windows.Forms.NotifyIcon notifyIcon;
 		private TransparentWindow transparentWindow;
 		private HookService hookService;
+		private PinService pinService;
 		private NotificationService notificationService;
 
 		static Application()
@@ -62,7 +64,12 @@ namespace SylphyHorn
 					}
 
 					this.ShowNotifyIcon();
-					this.hookService = new HookService().AddTo(this);
+
+					var helper = VdmHelperFactory.CreateInstance().AddTo(this);
+					this.pinService = new PinService(helper).AddTo(this);
+					this.hookService = new HookService(helper).AddTo(this);
+					this.hookService.PinRequested += (sender, hWnd) => this.pinService.Register(hWnd);
+					this.hookService.UnpinRequested += (sender, hWnd) => this.pinService.Unregister(hWnd);
 					this.notificationService = new NotificationService().AddTo(this);
 
 					base.OnStartup(e);

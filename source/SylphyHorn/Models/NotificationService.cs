@@ -12,7 +12,7 @@ namespace SylphyHorn.Models
 {
 	public class NotificationService : IDisposable
 	{
-		private IDisposable currentNotificationWindow;
+		private readonly SerialDisposable notificationWindow = new SerialDisposable();
 
 		public NotificationService()
 		{
@@ -27,9 +27,8 @@ namespace SylphyHorn.Models
 			{
 				var desktops = VirtualDesktop.GetDesktops();
 				var newIndex = Array.IndexOf(desktops, e.NewDesktop) + 1;
-
-				this.currentNotificationWindow?.Dispose();
-				this.currentNotificationWindow = ShowWindow(newIndex);
+				
+				this.notificationWindow.Disposable = ShowWindow(newIndex);
 			});
 		}
 
@@ -57,6 +56,7 @@ namespace SylphyHorn.Models
 		public void Dispose()
 		{
 			VirtualDesktop.CurrentChanged -= this.VirtualDesktopOnCurrentChanged;
+			this.notificationWindow.Dispose();
 		}
 	}
 }
