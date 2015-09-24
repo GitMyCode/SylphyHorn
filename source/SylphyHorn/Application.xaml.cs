@@ -66,6 +66,8 @@ namespace SylphyHorn
 					this.ShowNotifyIcon();
 
 					var helper = VdmHelperFactory.CreateInstance().AddTo(this);
+					helper.Init();
+
 					this.pinService = new PinService(helper).AddTo(this);
 					this.hookService = new HookService(helper).AddTo(this);
 					this.hookService.PinRequested += (sender, hWnd) => this.pinService.Register(hWnd);
